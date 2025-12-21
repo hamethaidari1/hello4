@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <div id="app">
+        <%- include('../partials/navbar') %>
+
+        <main id="mainContent">
+            <!-- Hero -->
+            <section class="bg-gradient-to-br from-gray-800 to-green-900 text-white py-16 md:py-24 lg:py-32 relative overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-12 relative z-10">
+
+                    <div class="lg:w-1/2 text-center lg:text-left">
+                        <div class="flex items-center justify-center lg:justify-start space-x-2 mb-4 text-gray-300">
+                            <button class="flex items-center justify-center w-7 h-7 rounded-full bg-green-500 text-white shadow-lg">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <span class="text-sm font-medium" data-i18n="inclusiveWorkplaces">Inclusive workplaces for all.</span>
+                        </div>
+
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+                            Find Jobs Where <span class="text-green-400">Diversity</span> Thrives
+                        </h1>
+                        <p class="text-lg md:text-xl text-gray-300 mb-10">
+                            Search for roles in organizations prioritizing diversity and inclusion that align with your values.
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-4 mb-8 max-w-lg lg:max-w-none mx-auto lg:mx-0">
+                            <div class="relative flex-grow">
+                                <input
+                                    type="text"
+                                    id="searchKeyword"
+                                    placeholder="Search job by title or keyword..."
+                                    data-i18n-placeholder="searchKeywordPlaceholder"
+                                    class="w-full pl-5 pr-12 py-3 border-2 border-gray-600 rounded-full focus:border-green-500 bg-gray-700 text-white placeholder-gray-400"
+                                />
+                                <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-green-500 text-white rounded-full p-2 h-10 w-10 flex items-center justify-center">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            
+                            <div class="relative">
+                                <select id="searchCity" class="appearance-none px-5 py-3 border-2 border-gray-600 rounded-full focus:border-green-500 bg-gray-700 text-white pr-10">
+                                    <option value="" data-i18n="filterCity">Şehir Seçin</option>
+                                    <option value="istanbul" data-i18n="cityIstanbul">İstanbul</option>
+                                    <option value="ankara" data-i18n="cityAnkara">Ankara</option>
+                                    <option value="izmir" data-i18n="cityIzmir">İzmir</option>
+                                    <option value="bursa" data-i18n="cityBursa">Bursa</option>
+                                    <option value="antalya" data-i18n="cityAntalya">Antalya</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="text-sm text-gray-400">
+                            <span class="text-green-300 font-semibold mr-1">15k+</span> Job available
+                        </p>
+                    </div>
+
+                    <div class="lg:w-1/2 mt-12 lg:mt-0 flex justify-center lg:justify-end relative">
+                        <div class="absolute lg:relative w-[300px] h-[350px] md:w-[400px] md:h-[450px] lg:w-[450px] lg:h-[500px] bg-white rounded-3xl shadow-2xl overflow-hidden lg:-mr-16 lg:mt-0 -mt-16 sm:mt-0">
+                            <img src="/img/hero pic.jpg" alt="Your Path Starts Here" class="object-cover w-full h-full">
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="py-12 bg-gray-50 bg-white:bg-gray-800">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h3 class="text-xl font-semibold text-secondary-600 dark:text-secondary-400 mb-6" data-i18n="Trusted by :">Trusted by:</h3>
+                    <div class="flex flex-wrap justify-center items-center space-x-8 md:space-x-12 opacity-80">
+                        <img src="/img/meta_PNG12.png" alt="Meta Logo" class="h-12 w-24 md:h-16 mx-4 object-contain">
+                        <img src="/img/goole.png" alt="Google Logo" class="h-12 w-24 md:h-16 mx-4 object-contain">
+                        <img src="/img/Amazon-Logo.png" alt="Amazon Logo" class="h-12 w-24 md:h-16 mx-4 object-contain">
+                        <img src="/img/apple-removebg-preview.png" alt="Apple Logo" class="h-12 w-24 md:h-16 mx-4 object-contain">
+                        <img src="/img/Linkedin-Logo-2011.png" alt="Linkedin Logo" class="h-12 w-24 md:h-16 mx-4 object-contain">
+                        <img src="/img/Microsoft-Logo-Transparent.png" alt="Microsoft Logo" class="h-12 w-24 md:h-16 mx-4 object-contain">
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-12 bg-green-100 border-b border-s-secondary-500">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <div class="text-center">
+                            <div class="text-3xl md:text-4xl font-bold text-primary-600 mb-2">Available Soon</div>
+                            <div class="text-secondary-600" data-i18n="statJobs">İş İlanı</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl md:text-4xl font-bold text-primary-600 mb-2">Available Soon</div>
+                            <div class="text-secondary-600" data-i18n="statCompanies">Şirket</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl md:text-4xl font-bold text-primary-600 mb-2">Available Soon</div>
+                            <div class="text-secondary-600" data-i18n="statCandidates">Aday</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl md:text-4xl font-bold text-primary-600 mb-2">Available Soon</div>
+                            <div class="text-secondary-600" data-i18n="statHired">İşe Alım</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Jobs -->
+            <section class="py-16 bg-secondary-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                    <h2 class="text-3xl font-bold text-secondary-900 mb-2" data-i18n="featuredJobsTitle">Öne Çıkan İlanlar</h2>
+                    <p class="text-secondary-600" data-i18n="featuredJobsSubtitle">Sizin için seçtiğimiz en iyi fırsatlar</p>
+                    </div>
+                    <a href="/jobs" class="btn-outline hidden md:inline-flex" id="viewAllJobsBtn" data-i18n="btnViewAll">Tümünü Gör</a>
+                </div>
+                
+                <div id="featuredJobsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Featured jobs will be loaded here dynamically by JavaScript -->
+                </div>
+                </div>
+                
+                <div class="text-center mt-8 md:hidden">
+                    <a href="/jobs" class="btn-outline" id="viewAllJobsMobileBtn" data-i18n="btnViewAll">Tümünü Gör</a>
+                </div>
+                </div>
+            </section>
+
+            <!-- Categories -->
+            <section class="py-16 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-secondary-900 mb-3" data-i18n="categoriesTitle">Sektörlere Göre İş Bul</h2>
+                    <p class="text-secondary-600" data-i18n="categoriesSubtitle">Popüler sektörlerdeki iş fırsatlarını keşfedin</p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="categoriesList">
+                    <!-- Categories will be loaded here dynamically by JavaScript -->
+                </div>
+                </div>
+            </section>
+        </main>
+
+        <%- include('../partials/footer') %>
+    </div>
+    <%- include('../partials/scripts') %>
+</body>
+</html>

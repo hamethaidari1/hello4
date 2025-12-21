@@ -1,0 +1,21 @@
+// mysql2/promise kütüphanesini içe aktar (promise yapısını kullanarak asenkron işlemleri kolaylaştırır)
+const mysql = require('mysql2/promise');
+
+// Ekran görüntünüzdeki ve sağlanan kimlik bilgilerinizle eşleşen Veritabanı yapılandırması
+const pool = mysql.createPool({
+  host: 'localhost',
+  user: 'root',
+  password: 'Hamedrasa1212',
+  database: 'job_portal_updatedl',
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+  typeCast: function (field, next) {
+    if (field.type === 'JSON') {
+      return JSON.parse(field.string());
+    }
+    return next();
+  }
+});
+
+module.exports = pool;

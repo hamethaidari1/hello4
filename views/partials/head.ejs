@@ -1,0 +1,116 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title><%= typeof title !== 'undefined' ? title + ' - ' : '' %>İşBUL.online</title>
+
+<meta name="description" content="Binlerce iş ilanı arasından size en uygun işi bulun. Hemen başvurun ve kariyerinizi ilerletin." />
+<meta name="author" content="İşBUL.online" />
+<meta property="og:title" content="İş Portal - İş Bul, Başvur, Kariyer Yap" />
+<meta property="og:description" content="Binlerce iş ilanı arasından size en uygun işi bulun. Hemen başvurun ve kariyerinizi ilerletin." />
+
+<link rel="icon" type="image/png" sizes="16x16" href="https://i.ibb.co/HLfD5wgf/dualite-favicon.png" />
+
+<!-- 1. Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- 2. Tailwind Configuration -->
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: '#f0fdf4', 100: '#dcfce7', 200: '#bbf7d0', 300: '#86efac', 400: '#4ade80',
+              500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#14532d',
+            },
+            secondary: {
+              50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 300: '#cbd5e1', 400: '#94a3b8',
+              500: '#64748b', 600: '#475569', 700: '#334155', 800: '#1e293b', 900: '#0f172a',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          animation: {
+            'slide-up': 'slideUp 0.3s ease-out',
+          },
+          keyframes: {
+            slideUp: {
+              '0%': { transform: 'translateY(10px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' },
+            },
+          },
+        }
+      }
+    }
+</script>
+
+<!-- 3. Import Map for Firebase & Modules (Fixes JS Loading) -->
+<script type="importmap">
+  {
+    "imports": {
+      "firebase/app": "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js",
+      "firebase/auth": "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js",
+      "firebase/firestore": "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js",
+      "firebase/analytics": "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js"
+    }
+  }
+</script>
+
+<!-- 4. Custom Styles processed by Tailwind CDN (Fixes @apply issues) -->
+<style type="text/tailwindcss">
+  @layer base {
+    * {
+      @apply border-secondary-200;
+    }
+    body {
+      @apply bg-secondary-50 text-secondary-900 font-sans antialiased;
+    }
+    input[type="text"], input[type="email"], input[type="password"], select, textarea {
+      @apply w-full px-4 py-2.5 border border-secondary-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all;
+    }
+    button {
+      @apply transition-all duration-200;
+    }
+  }
+
+  @layer components {
+    .btn-primary {
+      @apply bg-primary-600 hover:bg-primary-700 text-white font-medium px-6 py-2.5 rounded-lg shadow-sm hover:shadow-md active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed disabled:active:scale-100 inline-block text-center;
+    }
+    .btn-secondary {
+      @apply bg-white hover:bg-secondary-50 text-secondary-700 font-medium px-6 py-2.5 rounded-lg border border-secondary-300 shadow-sm hover:shadow-md active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed disabled:active:scale-100 inline-block text-center;
+    }
+    .btn-outline {
+      @apply bg-transparent hover:bg-primary-50 text-primary-600 font-medium px-6 py-2.5 rounded-lg border border-primary-600 active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed disabled:active:scale-100 inline-block text-center;
+    }
+    .btn-google {
+      @apply flex items-center justify-center w-full bg-white text-secondary-700 font-medium px-6 py-2.5 rounded-lg border border-secondary-300 shadow-sm hover:bg-gray-50 hover:shadow-md active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed disabled:active:scale-100 disabled:bg-gray-100;
+    }
+    .card {
+      @apply bg-white rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300 border border-secondary-200;
+    }
+    .modal-overlay {
+      @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4;
+    }
+    .modal-content {
+      @apply bg-white rounded-2xl shadow-xl max-w-md w-full p-6 animate-slide-up;
+    }
+    .mobile-menu {
+      @apply fixed top-0 left-0 w-full h-full bg-white z-50 transform -translate-x-full transition-transform duration-300 ease-in-out;
+    }
+    .mobile-menu.is-open {
+      @apply translate-x-0;
+    }
+    
+    /* Navigation Link Active State */
+    .nav-link.active {
+      @apply text-primary-600;
+    }
+  }
+
+  .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+  .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 10px; }
+  .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+  .hidden { display: none !important; }
+</style>

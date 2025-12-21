@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <div id="app">
+        <%- include('../partials/navbar') %>
+
+        <main id="mainContent">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+                <h1 class="text-4xl font-bold text-secondary-900 mb-6" data-i18n="aboutTitle">Hakkımızda</h1>
+                <div class="prose prose-lg max-w-none">
+                  <p class="text-lg text-secondary-700 mb-4" data-i18n="aboutText1">
+                    İşBUL, iş arayanlar ve işverenler arasında köprü kuran yenilikçi bir platformdur. Misyonumuz, yetenekli profesyonelleri hayallerindeki kariyer fırsatlarıyla buluşturmaktır.
+                  </p>
+                  <p class="text-lg text-secondary-700" data-i18n="aboutText2">
+                    Teknoloji odaklı çözümlerimiz ve kullanıcı dostu arayüzümüzle, iş arama sürecini kolaylaştırıyor ve herkes için daha erişilebilir hale getiriyoruz.
+                  </p>
+                </div>
+            </div>
+        </main>
+
+        <%- include('../partials/footer') %>
+    </div>
+    <%- include('../partials/scripts') %>
+</body>
+</html>

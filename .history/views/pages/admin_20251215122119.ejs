@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body class="bg-gray-100">
+    <div id="app">
+        <%- include('../partials/navbar') %>
+
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex justify-between items-center mb-8">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-900">Admin Paneli</h1>
+                    <p class="text-gray-600">İş ilanlarını ve başvuruları yönetin</p>
+                </div>
+                <button onclick="openJobModal()" class="btn-primary flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    Yeni İş Ekle
+                </button>
+            </div>
+
+            <!-- İstatistik Özeti -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-gray-500 text-sm font-medium">Toplam İş İlanı</h3>
+                    <p class="text-3xl font-bold text-gray-900 mt-2" id="totalJobsCount">0</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-gray-500 text-sm font-medium">Aktif Başvurular</h3>
+                    <p class="text-3xl font-bold text-gray-900 mt-2">12</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                    <h3 class="text-gray-500 text-sm font-medium">Toplam Görüntülenme</h3>
+                    <p class="text-3xl font-bold text-gray-900 mt-2">34</p>
+                </div>
+            </div>
+
+            <!-- İş İlanları Tablosu -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="px-6 py-4 border-b border-gray-200 bg-gray-50 flex justify-between items-center">
+                    <h2 class="font-semibold text-gray-800">İş İlanları</h2>
+                    <button onclick="fetchJobs()" class="text-sm text-primary-600 hover:text-primary-700 font-medium">
+                        Listeyi Yenile
+                    </button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="bg-gray-50 border-b border-gray-200 text-xs uppercase text-gray-500 font-semibold">
+                                <th class="px-6 py-4">ID</th>
+                                <th class="px-6 py-4">Başlık</th>
+                                <th class="px-6 py-4">Şirket</th>
+                                <th class="px-6 py-4">Sektör</th>
+                                <th class="px-6 py-4">Konum</th>
+                                <th class="px-6 py-4">Tarih</th>
+                                <th class="px-6 py-4 text-right">İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminJobsList" class="divide-y divide-gray-200">
+                            <tr>
+                                <td colspan="7" class="px-6 py-8 text-center text-gray-500">
+                                    İş ilanları yükleniyor...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <!-- İş Ekle / Düzenle Modalı -->
+        <div id="jobModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4">
+            <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto animate-slide-up">
+                <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center sticky top-0 bg-white z-10">
+                    <h2 class="text-xl font-bold text-gray-900" id="modalTitle">Yeni İş Ekle</h2>
+                    <button onclick="closeJobModal()" class="text-gray-400 hover:text-gray-600">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <form id="jobForm" class="p-6 space-y-6">
+                    <input type="hidden" id="jobId">
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Başlık -->
+                        <div class="col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">
+                                İş Başlığı (İngilizce)
+                            </label>
+                            <input type="text" id="titleEn" required
+                                   class="w-full rounded-lg border-gray-300 focus:ring-primary-500 focus:border-primary-500"
+                                   placeholder="Örn: Senior Frontend Developer">
+                        </div>
+                        <div class="col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">
+                                İş Başlığı (Türkçe - Opsiyonel)
+                            </label>
+                            <input type="text" id="titleTr"
+                                   class="w-full rounded-lg border-gray-300 focus:ring-primary-500 focus:border-primary-500"
+                                   placeholder="Örn: Kıdemli Frontend Geliştirici">
+                        </div>
+
+                        <!-- Şirket & Sektör -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Şirket Adı</label>
+                            <input type="text" id="company" required
+                                   class="w-full rounded-lg border-gray-300 focus:ring-primary-500 focus:border-primary-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Sektör</label>
+                            <select id="sector" required
+                                    class="w-full rounded-lg border-gray-300 focus:ring-primary-500 focus:border-primary-500">
+                                <option value="technology">Teknoloji</option>
+                                <option value="finance">Finans</option>
+                                <option value="health">Sağlık</option>
+                                <option value="education">Eğitim</option>
+                                <option value="marketing">Pazarlama</option>
+                                <option value="sales">Satış</option>
+                            </select>
+                        </div>
+
+                        <!-- Şehir -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Şehir</label>
+                            <select id="city" required
+                                    class="w-full rounded-lg border-gray-300 focus:ring-primary-500 focus:border-primary-500">
+                                <option value="istanbul">İstanbul</option>
+                                <option value="ankara">Ankara</option>
+                                <option value="izmir">İzmir</option>
+                                <option value="bursa">Bursa</option>
+                                <option value="antalya">Antalya</option>
+                                <option value="remote">Uzaktan</option>
+                            </select>
+                        </div>
+
+                        <!-- Öne Çıkan -->
+                        <div class="flex items-center pt-6">
+                            <label class="inline-flex items-center cursor-pointer">
+                                <input type="checkbox" id="featured" class="sr-only peer">
+                                <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 rounded-full peer-checked:after:translate-x-full after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                                <span class="ms-3 text-sm font-medium text-gray-700">
+                                    Öne Çıkan İş İlanı
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Açıklama -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">
+                            Açıklama (İngilizce)
+                        </label>
+                        <textarea id="descEn" rows="3" required
+                                  class="w-full rounded-lg border-gray-300 focus:ring-primary-500 focus:border-primary-500"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">
+                            Açıklama (Türkçe - Opsiyonel)
+                        </label>
+                        <textarea id="descTr" rows="3"
+                                  class="w-full rounded-lg border-gray-300 focus:ring-primary-500 focus:border-primary-500"></textarea>
+                    </div>
+
+                    <!-- Gereksinimler -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">
+                            Gereksinimler (Virgülle ayrılmış)
+                        </label>
+                        <input type="text" id="requirements"
+                               class="w-full rounded-lg border-gray-300 focus:ring-primary-500 focus:border-primary-500"
+                               placeholder="Örn: React, Node.js, 3+ yıl deneyim">
+                    </div>
+
+                    <!-- Aksiyonlar -->
+                    <div class="flex justify-end gap-3 pt-4 border-t border-gray-200">
+                        <button type="button" onclick="closeJobModal()" class="btn-secondary">
+                            İptal
+                        </button>
+                        <button type="submit" class="btn-primary">
+                            Kaydet
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <%- include('../partials/footer') %>
+    </div>
+
+    <!-- Scriptler -->
+    <%- include('../partials/scripts') %>
+    <script src="/js/admin.js"></script>
+</body>
+</html>

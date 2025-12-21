@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>İşBUL.online</title>
+
+    <meta name="description" content="Binlerce iş ilanı arasından size en uygun işi bulun. Hemen başvurun ve kariyerinizi ilerletin." />
+    <meta name="author" content="İşBUL.online" />
+    <meta property="og:title" content="İş Portal - İş Bul, Başvur, Kariyer Yap" />
+    <meta property="og:description" content="Binlerce iş ilanı arasından size en uygun işi bulun. Hemen başvurun ve kariyerinizi ilerletin." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://ibb.co/67X3xfSV" />
+    <meta property="og:image:alt" content="CareerNest Preview" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="İş Portal - İş Bul, Başvur, Kariyer Yap" />
+    <meta name="twitter:description" content="Binlerce iş ilanı arasından size en uygun işi bulun. Hemen başvurun ve kariyerinizi ilerletin." />
+    <meta name="twitter:site" content="@jobportal" />
+    <meta name="twitter:image" content="https://ibb.co/67X3xfSV" />
+
+    <link rel="icon" type="image/png" sizes="16x16" href="https://i.ibb.co/HLfD5wgf/dualite-favicon.png" />
+    <link rel="canonical" href="https://alpha.dualite.dev" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "CareerNest",
+        "url": "https://alpha.dualite.dev",
+        "description": "Binlerce iş ilanı arasından size en uygun işi bulun",
+        "publisher": {
+          "@type": "Organization",
+          "name": "İşBUL.online"
+        }
+      }
+    </script>
+    
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <div id="app">
+      <!-- Navigation -->
+      <nav class="bg-white shadow-sm sticky top-0 z-40 border-b border-secondary-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex justify-between items-center h-16">
+            <!-- Logo & Desktop Nav -->
+            <div class="flex items-center space-x-8">
+              <div class="flex items-center space-x-2 cursor-pointer" id="logo">
+                <div class="bg-primary-600 text-white w-10 h-10 rounded-lg flex items-center justify-center font-bold text-xl">
+                  İB
+                </div>
+                <span class="font-bold text-xl text-primary-600" data-i18n="appName">İŞBUL.ONLINE</span>
+              </div>
+              <div class="hidden md:flex items-center space-x-6">
+                <a href="#" class="nav-link text-secondary-700 hover:text-primary-600 font-medium" data-page="home" data-i18n="navHome">Ana Sayfa</a>
+                <a href="#" class="nav-link text-secondary-700 hover:text-primary-600 font-medium" data-page="jobs" data-i18n="navJobs">İş İlanları</a>
+                <a href="#" class="nav-link text-secondary-700 hover:text-primary-600 font-medium" data-page="about" data-i18n="navAbout">Hakkımızda</a>
+              </div>
+            </div>
+
+            <!-- Right Side Actions -->
+            <div class="flex items-center space-x-4">
+              <!-- Language Switcher -->
+              <div class="relative">
+                <button id="languageSwitcher" class="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-secondary-100 transition-colors">
+                  <svg class="w-5 h-5 text-secondary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                  </svg>
+                  <span class="text-sm font-medium text-secondary-700" id="currentLang">TR</span>
+                  <svg class="w-4 h-4 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </button>
+                <div id="languageDropdown" class="hidden absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg border border-secondary-200 py-1">
+                  <button data-lang="tr" class="lang-option w-full text-left px-4 py-2 hover:bg-secondary-50 text-secondary-700 font-medium">Türkçe</button>
+                  <button data-lang="en" class="lang-option w-full text-left px-4 py-2 hover:bg-secondary-50 text-secondary-700 font-medium">English</button>
+                </div>
+              </div>
+
+             <!-- Auth Buttons (Not Logged In) -->
+            <div id="authButtons" class="flex items-center space-x-3">
+            <button id="loginBtn" class="btn-outline px-2 py-1 md:px-2 md:py-2" data-i18n="btnLogin">Giriş Yap</button>
+            <button id="registerBtn" class="btn-primary px-2 py-1 md:px-2 md:py-2" data-i18n="btnRegister">Kayıt Ol</button>
+            </div>
+
+
+              <!-- User Profile (Logged In) -->
+              <div id="userProfile" class="hidden relative">
+                <button id="profileBtn" class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-secondary-100 transition-colors">
+                  <div class="w-9 h-9 bg-primary-600 rounded-full flex items-center justify-center text-white font-semibold text-sm overflow-hidden" id="userAvatar">
+                    U
+                  </div>
+                  <span class="hidden md:block font-medium text-secondary-700" id="userName">Kullanıcı</span>
+                  <svg class="w-4 h-4 text-secondary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </button>
+                <div id="profileDropdown" class="hidden absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-secondary-200 py-2">
+                  <div class="px-4 py-3 border-b border-secondary-200">
+                    <p class="text-sm font-medium text-secondary-900" id="profileUserName">Kullanıcı</p>
+                    <button id="goToProfileBtn" class="text-sm text-primary-600 hover:text-primary-700 mt-1 font-medium" data-i18n="profileGoToAccount">Hesabıma Git</button>
+                  </div>
+                  <button id="settingsBtn" class="w-full text-left px-4 py-2 hover:bg-secondary-50 text-secondary-700 flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    <span data-i18n="profileSettings">Ayarlar</span>
+                  </button>
+                  <button id="helpBtn" class="w-full text-left px-4 py-2 hover:bg-secondary-50 text-secondary-700 flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span data-i18n="profileHelp">Yardım</span>
+                  </button>
+                  <div class="border-t border-secondary-200 my-2"></div>
+                  <button id="logoutBtn" class="w-full text-left px-4 py-2 hover:bg-red-50 text-red-600 flex items-center space-x-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                    </svg>
+                    <span data-i18n="profileLogout">Çıkış Yap</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Mobile Menu Toggle -->
+              <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-secondary-100">
+                <svg class="w-6 h-6 text-secondary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="mobile-menu">
+        <div class="p-4">
+          <div class="flex justify-between items-center mb-8">
+            <span class="font-bold text-xl text-secondary-900" data-i18n="appName">İşBUL.online</span>
+            <button id="mobileMenuCloseBtn" class="p-2 rounded-lg hover:bg-secondary-100">
+              <svg class="w-6 h-6 text-secondary-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              </svg>
+            </button>
+          </div>
+          <div class="space-y-3">
+            <a href="#" class="nav-link-mobile block px-4 py-3 rounded-lg hover:bg-secondary-100 text-secondary-700 font-medium text-lg" data-page="home" data-i18n="navHome">Ana Sayfa</a>
+            <a href="#" class="nav-link-mobile block px-4 py-3 rounded-lg hover:bg-secondary-100 text-secondary-700 font-medium text-lg" data-page="jobs" data-i18n="navJobs">İş İlanları</a>
+            <a href="#" class="nav-link-mobile block px-4 py-3 rounded-lg hover:bg-secondary-100 text-secondary-700 font-medium text-lg" data-page="about" data-i18n="navAbout">Hakkımızda</a>
+          </div>
+          <div id="mobileAuthButtons" class="flex flex-col space-y-3 pt-6 mt-6 border-t border-secondary-200">
+            <button id="mobileLoginBtn" class="btn-outline w-full py-3" data-i18n="btnLogin">Giriş Yap</button>
+            <button id="mobileRegisterBtn" class="btn-primary w-full py-3" data-i18n="btnRegister">Kayıt Ol</button>
+          </div>
+        </div>
+      </div>
+
+      <main id="mainContent">
+        <!-- Home Page -->
+        <div id="homePage" class="page-content">
+            <!-- Hero -->
+            <section class="bg-gradient-to-br from-gray-800 to-green-900 text-white py-16 md:py-24 lg:py-32 relative overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-12 relative z-10">
+
+                    <div class="lg:w-1/2 text-center lg:text-left">
+                        <div class="flex items-center justify-center lg:justify-start space-x-2 mb-4 text-gray-300">
+                            <button class="flex items-center justify-center w-7 h-7 rounded-full bg-green-500 text-white shadow-lg">
+                                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                </svg>
+                            </button>
+                            <span class="text-sm font-medium" data-i18n="inclusiveWorkplaces">Inclusive workplaces for all.</span>
+                        </div>
+
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+                            Find Jobs Where <span class="text-green-400">Diversity</span> Thrives
+                        </h1>
+                        <p class="text-lg md:text-xl text-gray-300 mb-10">
+                            Search for roles in organizations prioritizing diversity and inclusion that align with your values.
+                        </p>
+
+                        <div class="flex flex-col sm:flex-row gap-4 mb-8 max-w-lg lg:max-w-none mx-auto lg:mx-0">
+                            <div class="relative flex-grow">
+                                <input
+                                    type="text"
+                                    id="searchKeyword"
+                                    placeholder="Search job by title or keyword..."
+                                    data-i18n-placeholder="searchKeywordPlaceholder"
+                                    class="w-full pl-5 pr-12 py-3 border-2 border-gray-600 rounded-full focus:border-green-500 bg-gray-700 text-white placeholder-gray-400"
+                                />
+                                <button class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-green-500 text-white rounded-full p-2 h-10 w-10 flex items-center justify-center">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            
+                            <div class="relative">
+                                <select id="searchCity" class="appearance-none px-5 py-3 border-2 border-gray-600 rounded-full focus:border-green-500 bg-gray-700 text-white pr-10">
+                                    <option value="" data-i18n="filterCity">Şehir Seçin</option>
+                                    <option value="istanbul" data-i18n="cityIstanbul">İstanbul</option>
+                                    <option value="ankara" data-i18n="cityAnkara">Ankara</option>
+                                    <option value="izmir" data-i18n="cityIzmir">İzmir</option>
+                                    <option value="bursa" data-i18n="cityBursa">Bursa</option>
+                                    <option value="antalya" data-i18n="cityAntalya">Antalya</option>
+                                    <option value="adana" data-i18n="cityAdana">Adana</option>
+                                    <option value="gaziantep" data-i18n="cityGaziantep">Gaziantep</option>
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="text-sm text-gray-400">
+                            <span class="text-green-300 font-semibold mr-1">15k+</span> Job available
+                        </p>
+                    </div>
+
+                    <div class="lg:w-1/2 mt-12 lg:mt-0 flex justify-center lg:justify-end relative">
+                        <div class="absolute lg:relative w-[300px] h-[350px] md:w-[400px] md:h-[450px] lg:w-[450px] lg:h-[500px] bg-white rounded-3xl shadow-2xl overflow-hidden lg:-mr-16 lg:mt-0 -mt-16 sm:mt-0">
+                            <img src="/src/img/hero pic.jpg" alt="Your Path Starts Here" class="object-cover w-full h-full">
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="py-12 bg-gray-50 bg-white:bg-gray-800">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h3 class="text-xl font-semibold text-secondary-600 dark:text-secondary-400 mb-6" data-i18n="Trusted by :">Trusted by:</h3>
+                    <div class="flex flex-wrap justify-center items-center space-x-8 md:space-x-12 opacity-80">
+                        <img src="/src/img/meta_PNG12.png" alt="Meta Logo" class="h-12 w-24 md:h-16 mx-4 object-contain">
+                        <img src="/src/img/goole.png" alt="Google Logo" class="h-12 w-24 md:h-16 mx-4 object-contain">
+                        <img src="/src/img/Amazon-Logo.png" alt="Amazon Logo" class="h-12 w-24 md:h-16 mx-4 object-contain">
+                        <img src="/src/img/apple-removebg-preview.png" alt="Apple Logo" class="h-12 w-24 md:h-16 mx-4 object-contain">
+                        <img src="/src/img/Linkedin-Logo-2011.png" alt="Linkedin Logo" class="h-12 w-24 md:h-16 mx-4 object-contain">
+                        <img src="/src/img/Microsoft-Logo-Transparent.png" alt="Microsoft Logo" class="h-12 w-24 md:h-16 mx-4 object-contain">
+                    </div>
+                </div>
+            </section>
+
+            <section class="py-12 bg-green-100 border-b border-s-secondary-500">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        <div class="text-center">
+                            <div class="text-3xl md:text-4xl font-bold text-primary-600 mb-2">Available Soon</div>
+                            <div class="text-secondary-600" data-i18n="statJobs">İş İlanı</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl md:text-4xl font-bold text-primary-600 mb-2">Available Soon</div>
+                            <div class="text-secondary-600" data-i18n="statCompanies">Şirket</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl md:text-4xl font-bold text-primary-600 mb-2">Available Soon</div>
+                            <div class="text-secondary-600" data-i18n="statCandidates">Aday</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl md:text-4xl font-bold text-primary-600 mb-2">Available Soon</div>
+                            <div class="text-secondary-600" data-i18n="statHired">İşe Alım</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Jobs -->
+            <section class="py-16 bg-secondary-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center mb-8">
+                    <div>
+                    <h2 class="text-3xl font-bold text-secondary-900 mb-2" data-i18n="featuredJobsTitle">Öne Çıkan İlanlar</h2>
+                    <p class="text-secondary-600" data-i18n="featuredJobsSubtitle">Sizin için seçtiğimiz en iyi fırsatlar</p>
+                    </div>
+                    <button class="btn-outline hidden md:inline-flex" id="viewAllJobsBtn" data-i18n="btnViewAll">Tümünü Gör</button>
+                </div>
+                
+                <div id="featuredJobsList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Jobs will be loaded here dynamically -->
+                </div>
+                
+                <div class="text-center mt-8 md:hidden">
+                    <button class="btn-outline" id="viewAllJobsMobileBtn" data-i18n="btnViewAll">Tümünü Gör</button>
+                </div>
+                </div>
+            </section>
+
+            <!-- Categories -->
+            <section class="py-16 bg-white">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-secondary-900 mb-3" data-i18n="categoriesTitle">Sektörlere Göre İş Bul</h2>
+                    <p class="text-secondary-600" data-i18n="categoriesSubtitle">Popüler sektörlerdeki iş fırsatlarını keşfedin</p>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="categoriesList">
+                    <!-- Categories will be loaded here -->
+                </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Jobs Page -->
+        <div id="jobsPage" class="page-content hidden">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="mb-8">
+              <h1 class="text-3xl md:text-4xl font-bold text-secondary-900 mb-2" data-i18n="jobsPageTitle">İş İlanları</h1>
+              <p class="text-secondary-600" data-i18n="jobsPageSubtitle">Size uygun iş fırsatlarını keşfedin</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+              <!-- Filters Sidebar -->
+              <div class="lg:col-span-1">
+                <div class="card p-6 sticky top-20">
+                  <h3 class="font-bold text-lg text-secondary-900 mb-4" data-i18n="filtersTitle">Filtreler</h3>
+                  
+                  <!-- Sector Filter -->
+                  <div class="mb-6">
+                    <label class="block text-sm font-semibold text-secondary-700 mb-2" data-i18n="filterSector">Sektör</label>
+                    <select id="filterSector" class="w-full">
+                      <option value="" data-i18n="filterAllSectors">Tüm Sektörler</option>
+                      <option value="technology" data-i18n="sectorTechnology">Teknoloji</option>
+                      <option value="finance" data-i18n="sectorFinance">Finans</option>
+                      <option value="health" data-i18n="sectorHealth">Sağlık</option>
+                      <option value="education" data-i18n="sectorEducation">Eğitim</option>
+                      <option value="marketing" data-i18n="sectorMarketing">Pazarlama</option>
+                      <option value="sales" data-i18n="sectorSales">Satış</option>
+                    </select>
+                  </div>
+
+                  <!-- City Filter -->
+                  <div class="mb-6">
+                    <label class="block text-sm font-semibold text-secondary-700 mb-2" data-i18n="filterCity">Şehir</label>
+                    <select id="filterCity" class="w-full">
+                      <option value="" data-i18n="filterAllCities">Tüm Şehirler</option>
+                      <option value="istanbul">İstanbul</option>
+                      <option value="ankara">Ankara</option>
+                      <option value="izmir">İzmir</option>
+                      <option value="bursa">Bursa</option>
+                      <option value="antalya">Antalya</option>
+                    </select>
+                  </div>
+
+                  <!-- Date Filter -->
+                  <div class="mb-6">
+                    <label class="block text-sm font-semibold text-secondary-700 mb-2" data-i18n="filterDate">Tarih</label>
+                    <select id="filterDate" class="w-full">
+                      <option value="" data-i18n="filterAllDates">Tüm Tarihler</option>
+                      <option value="today" data-i18n="filterToday">Bugün</option>
+                      <option value="week" data-i18n="filterThisWeek">Bu Hafta</option>
+                      <option value="month" data-i18n="filterThisMonth">Bu Ay</option>
+                    </select>
+                  </div>
+
+                  <button id="clearFiltersBtn" class="btn-secondary w-full" data-i18n="btnClearFilters">Filtreleri Temizle</button>
+                </div>
+              </div>
+
+              <!-- Jobs List -->
+              <div class="lg:col-span-3">
+                <div class="mb-4 flex items-center justify-between">
+                  <p class="text-secondary-600">
+                    <span id="jobsCount">0</span> <span data-i18n="jobsFound">ilan bulundu</span>
+                  </p>
+                  <select id="sortJobs" class="px-4 py-2 border border-secondary-300 rounded-lg">
+                    <option value="newest" data-i18n="sortNewest">En Yeni</option>
+                    <option value="oldest" data-i18n="sortOldest">En Eski</option>
+                  </select>
+                </div>
+                
+                <div id="jobsList" class="space-y-4">
+                  <!-- Jobs will be loaded here -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- About Page -->
+        <div id="aboutPage" class="page-content hidden">
+          <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <h1 class="text-4xl font-bold text-secondary-900 mb-6" data-i18n="aboutTitle">Hakkımızda</h1>
+            <div class="prose prose-lg max-w-none">
+              <p class="text-lg text-secondary-700 mb-4" data-i18n="aboutText1">
+                İşBUL, iş arayanlar ve işverenler arasında köprü kuran yenilikçi bir platformdur. Misyonumuz, yetenekli profesyonelleri hayallerindeki kariyer fırsatlarıyla buluşturmaktır.
+              </p>
+              <p class="text-lg text-secondary-700" data-i18n="aboutText2">
+                Teknoloji odaklı çözümlerimiz ve kullanıcı dostu arayüzümüzle, iş arama sürecini kolaylaştırıyor ve herkes için daha erişilebilir hale getiriyoruz.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile Page -->
+        <div id="profilePage" class="page-content hidden">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <!-- Sidebar (Left) -->
+              <div class="lg:col-span-1 space-y-6">
+                <!-- Profile Card -->
+                <div class="card p-6 text-center">
+                  <div class="relative inline-block mb-4">
+                    <div class="w-32 h-32 bg-primary-600 rounded-full flex items-center justify-center text-white font-bold text-4xl mx-auto border-4 border-white shadow-lg overflow-hidden" id="profilePageAvatar">
+                      U
+                    </div>
+                    <button id="changeAvatarBtn" class="absolute bottom-0 right-0 bg-white p-2 rounded-full shadow-md hover:bg-gray-50 border border-gray-200">
+                      <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                      </svg>
+                    </button>
+                    <input type="file" id="avatarInput" accept="image/*" class="hidden">
+                  </div>
+                  <h2 class="text-2xl font-bold text-secondary-900 mb-1" id="profilePageName">Kullanıcı Adı</h2>
+                  <p class="text-secondary-600 font-medium mb-4" id="profilePageTitle">Frontend Developer</p>
+                  
+                  <div class="flex items-center justify-center space-x-2 text-secondary-500 text-sm mb-6">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    <span id="profilePageLocation">İstanbul, Türkiye</span>
+                  </div>
+
+                  <div class="border-t border-secondary-200 pt-4 space-y-3">
+                    <div class="flex items-center space-x-3 text-secondary-600">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                      </svg>
+                      <span class="text-sm truncate" id="profilePageEmail">email@example.com</span>
+                    </div>
+                    <div class="flex items-center space-x-3 text-secondary-600">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                      </svg>
+                      <span class="text-sm">+90 555 123 45 67</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Resume Widget -->
+                <div class="card p-6">
+                  <h3 class="font-bold text-lg text-secondary-900 mb-4" data-i18n="profileResume">CV / Özgeçmiş</h3>
+                  <div id="uploadCvBtn" class="border-2 border-dashed border-secondary-300 rounded-lg p-4 text-center hover:bg-secondary-50 transition-colors cursor-pointer">
+                    <svg class="w-8 h-8 text-secondary-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                    </svg>
+                    <p class="text-sm text-secondary-600 font-medium" data-i18n="profileUploadCV">CV Yükle</p>
+                    <p class="text-xs text-secondary-400 mt-1">PDF Only (Max 5MB)</p>
+                  </div>
+                  <input type="file" id="cvInput" accept="application/pdf" class="hidden">
+                  
+                  <div class="mt-4 flex items-center justify-between p-3 bg-primary-50 rounded-lg border border-primary-100">
+                    <div class="flex items-center space-x-3">
+                      <svg class="w-6 h-6 text-primary-600" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"></path>
+                      </svg>
+                      <div>
+                        <p class="text-sm font-medium text-primary-900" id="cvFileName">My_Resume.pdf</p>
+                        <p class="text-xs text-primary-600" id="cvUpdateDate">Last updated: 2 days ago</p>
+                      </div>
+                    </div>
+                    <button class="text-primary-600 hover:text-primary-800">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Skills Widget -->
+                <div class="card p-6">
+                  <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-bold text-lg text-secondary-900" data-i18n="profileSkills">Yetenekler</h3>
+                    <button class="text-primary-600 hover:text-primary-700 text-sm font-medium">+ Ekle</button>
+                  </div>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-secondary-100 text-secondary-700 rounded-full text-sm font-medium">JavaScript</span>
+                    <span class="px-3 py-1 bg-secondary-100 text-secondary-700 rounded-full text-sm font-medium">React</span>
+                    <span class="px-3 py-1 bg-secondary-100 text-secondary-700 rounded-full text-sm font-medium">HTML/CSS</span>
+                    <span class="px-3 py-1 bg-secondary-100 text-secondary-700 rounded-full text-sm font-medium">Tailwind CSS</span>
+                    <span class="px-3 py-1 bg-secondary-100 text-secondary-700 rounded-full text-sm font-medium">Git</span>
+                    <span class="px-3 py-1 bg-secondary-100 text-secondary-700 rounded-full text-sm font-medium">Node.js</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Main Content (Right) -->
+              <div class="lg:col-span-2">
+                <div class="card">
+                  <!-- Tabs Header -->
+                  <div class="border-b border-secondary-200">
+                    <nav class="flex space-x-8 px-6" aria-label="Tabs">
+                      <button class="profile-tab-btn active border-primary-500 text-primary-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" data-tab="overview" data-i18n="tabOverview">
+                        Genel Bakış
+                      </button>
+                      <button class="profile-tab-btn border-transparent text-secondary-500 hover:text-secondary-700 hover:border-secondary-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" data-tab="experience" data-i18n="tabExperience">
+                        Deneyim
+                      </button>
+                      <button class="profile-tab-btn border-transparent text-secondary-500 hover:text-secondary-700 hover:border-secondary-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" data-tab="education" data-i18n="tabEducation">
+                        Eğitim
+                      </button>
+                      <button class="profile-tab-btn border-transparent text-secondary-500 hover:text-secondary-700 hover:border-secondary-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" data-tab="applications" data-i18n="tabApplications">
+                        Başvurularım
+                      </button>
+                    </nav>
+                  </div>
+
+                  <!-- Tab Contents -->
+                  <div class="p-6">
+                    <!-- Overview Tab -->
+                    <div id="tab-overview" class="profile-tab-content">
+                      <h4 class="text-lg font-bold text-secondary-900 mb-3" data-i18n="profileAboutMe">Hakkımda</h4>
+                      <p class="text-secondary-600 mb-6 leading-relaxed">
+                        Deneyimli bir Frontend Geliştirici olarak, kullanıcı dostu ve performanslı web uygulamaları oluşturma konusunda tutkuluyum. Modern web teknolojilerini yakından takip ediyor ve projelerimde en iyi pratikleri uygulamaya özen gösteriyorum. Takım çalışmasına yatkınım ve sürekli öğrenmeye açığım.
+                      </p>
+                      
+                      <h4 class="text-lg font-bold text-secondary-900 mb-3" data-i18n="profileLanguages">Diller</h4>
+                      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="flex justify-between items-center p-3 bg-secondary-50 rounded-lg">
+                          <span class="font-medium text-secondary-900">Türkçe</span>
+                          <span class="text-sm text-secondary-500">Ana Dil</span>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-secondary-50 rounded-lg">
+                          <span class="font-medium text-secondary-900">İngilizce</span>
+                          <span class="text-sm text-secondary-500">İleri Seviye (C1)</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Experience Tab -->
+                    <div id="tab-experience" class="profile-tab-content hidden">
+                      <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-secondary-300 before:to-transparent">
+                        <!-- Item 1 -->
+                        <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                          <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-secondary-200 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                            <svg class="fill-secondary-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                              <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm0 14A6 6 0 1 1 8 2a6 6 0 0 1 0 12z"/>
+                            </svg>
+                          </div>
+                          <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-4 rounded-lg border border-secondary-200 shadow-sm">
+                            <div class="flex items-center justify-between space-x-2 mb-1">
+                              <div class="font-bold text-secondary-900">Senior Frontend Developer</div>
+                              <time class="font-caveat font-medium text-primary-600 text-sm">2023 - Present</time>
+                            </div>
+                            <div class="text-secondary-500 text-sm mb-2">Tech Solutions Inc.</div>
+                            <div class="text-secondary-600 text-sm">Liderlik ettiğim frontend ekibiyle birlikte modern web uygulamaları geliştiriyoruz. React ve Next.js teknolojilerini kullanıyoruz.</div>
+                          </div>
+                        </div>
+
+                        <!-- Item 2 -->
+                        <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                          <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-secondary-200 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">
+                            <svg class="fill-secondary-500" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                              <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm0 14A6 6 0 1 1 8 2a6 6 0 0 1 0 12z"/>
+                            </svg>
+                          </div>
+                          <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-4 rounded-lg border border-secondary-200 shadow-sm">
+                            <div class="flex items-center justify-between space-x-2 mb-1">
+                              <div class="font-bold text-secondary-900">Frontend Developer</div>
+                              <time class="font-caveat font-medium text-secondary-500 text-sm">2020 - 2023</time>
+                            </div>
+                            <div class="text-secondary-500 text-sm mb-2">WebAgency Ltd.</div>
+                            <div class="text-secondary-600 text-sm">Müşteri projeleri için responsive web siteleri ve e-ticaret arayüzleri tasarladım ve kodladım.</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Education Tab -->
+                    <div id="tab-education" class="profile-tab-content hidden">
+                      <div class="space-y-4">
+                        <div class="flex gap-4 items-start p-4 border border-secondary-200 rounded-lg hover:shadow-md transition-shadow">
+                          <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center text-primary-600 shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                              <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
+                            </svg>
+                          </div>
+                          <div>
+                            <h4 class="font-bold text-secondary-900">Bilgisayar Mühendisliği</h4>
+                            <p class="text-secondary-600 text-sm">İstanbul Teknik Üniversitesi</p>
+                            <p class="text-secondary-400 text-xs mt-1">2016 - 2020 • Lisans Derecesi</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Applications Tab -->
+                    <div id="tab-applications" class="profile-tab-content hidden">
+                      <div class="space-y-4" id="applicationsList">
+                        <!-- Mock Application Item -->
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 border border-secondary-200 rounded-lg hover:border-primary-300 transition-colors">
+                          <div class="mb-3 sm:mb-0">
+                            <h4 class="font-bold text-secondary-900">Senior React Developer</h4>
+                            <p class="text-secondary-600 text-sm">Global Tech Corp • İstanbul</p>
+                            <p class="text-secondary-400 text-xs mt-1">Applied on: 12 Oct 2023</p>
+                          </div>
+                          <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs font-bold uppercase tracking-wide">In Review</span>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 border border-secondary-200 rounded-lg hover:border-primary-300 transition-colors">
+                          <div class="mb-3 sm:mb-0">
+                            <h4 class="font-bold text-secondary-900">UI/UX Designer</h4>
+                            <p class="text-secondary-600 text-sm">Creative Agency • Remote</p>
+                            <p class="text-secondary-400 text-xs mt-1">Applied on: 05 Oct 2023</p>
+                          </div>
+                          <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs font-bold uppercase tracking-wide">Interview</span>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-4 border border-secondary-200 rounded-lg hover:border-primary-300 transition-colors">
+                          <div class="mb-3 sm:mb-0">
+                            <h4 class="font-bold text-secondary-900">Frontend Developer</h4>
+                            <p class="text-secondary-600 text-sm">StartUp Inc • Ankara</p>
+                            <p class="text-secondary-400 text-xs mt-1">Applied on: 20 Sep 2023</p>
+                          </div>
+                          <span class="px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs font-bold uppercase tracking-wide">Rejected</span>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings Page -->
+        <div id="settingsPage" class="page-content hidden">
+          <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <h1 class="text-3xl font-bold text-secondary-900 mb-8" data-i18n="settingsTitle">Ayarlar</h1>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <!-- Settings Sidebar -->
+              <div class="md:col-span-1">
+                <div class="card p-4">
+                  <nav class="space-y-1">
+                    <a href="#security" class="flex items-center px-4 py-3 text-primary-600 bg-primary-50 rounded-lg font-medium">
+                      <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                      </svg>
+                      <span data-i18n="settingsSecurity">Güvenlik</span>
+                    </a>
+                    <a href="#notifications" class="flex items-center px-4 py-3 text-secondary-600 hover:bg-secondary-50 rounded-lg font-medium">
+                      <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                      </svg>
+                      <span data-i18n="settingsNotifications">Bildirimler</span>
+                    </a>
+                  </nav>
+                </div>
+              </div>
+
+              <!-- Settings Content -->
+              <div class="md:col-span-2 space-y-8">
+                <!-- Password Section -->
+                <div id="security" class="card p-6">
+                  <h2 class="text-xl font-bold text-secondary-900 mb-6" data-i18n="settingsChangePassword">Şifre Değiştir</h2>
+                  <form id="changePasswordForm" class="space-y-4">
+                    <div>
+                      <label class="block text-sm font-semibold text-secondary-700 mb-2" data-i18n="settingsCurrentPassword">Mevcut Şifre</label>
+                      <input type="password" id="currentPassword" required class="w-full">
+                    </div>
+                    <div>
+                      <label class="block text-sm font-semibold text-secondary-700 mb-2" data-i18n="settingsNewPassword">Yeni Şifre</label>
+                      <input type="password" id="newPassword" required class="w-full">
+                    </div>
+                    <div>
+                      <label class="block text-sm font-semibold text-secondary-700 mb-2" data-i18n="settingsConfirmNewPassword">Yeni Şifre Tekrar</label>
+                      <input type="password" id="confirmNewPassword" required class="w-full">
+                    </div>
+                    <div class="pt-4">
+                      <button type="submit" class="btn-primary" data-i18n="settingsSavePassword">Şifreyi Güncelle</button>
+                    </div>
+                  </form>
+                </div>
+
+                <!-- Notifications Section -->
+                <div id="notifications" class="card p-6">
+                  <h2 class="text-xl font-bold text-secondary-900 mb-6" data-i18n="settingsNotifications">Bildirimler</h2>
+                  <div class="space-y-6">
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <h3 class="font-medium text-secondary-900" data-i18n="settingsEmailNotif">E-posta Bildirimleri</h3>
+                        <p class="text-sm text-secondary-500" data-i18n="settingsEmailNotifDesc">Yeni iş ilanları ve başvuru güncellemeleri hakkında e-posta al.</p>
+                      </div>
+                      <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" id="emailNotifToggle" class="sr-only peer" checked>
+                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                      </label>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <h3 class="font-medium text-secondary-900" data-i18n="settingsJobAlerts">İş Alarmları</h3>
+                        <p class="text-sm text-secondary-500" data-i18n="settingsJobAlertsDesc">Profilinize uygun yeni ilanlar için bildirim al.</p>
+                      </div>
+                      <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" id="jobAlertsToggle" class="sr-only peer" checked>
+                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Danger Zone -->
+                <div class="card p-6 border-red-200 bg-red-50">
+                  <h2 class="text-xl font-bold text-red-700 mb-2" data-i18n="settingsDeleteAccount">Hesabı Sil</h2>
+                  <p class="text-sm text-red-600 mb-4" data-i18n="settingsDeleteAccountDesc">Hesabınızı sildiğinizde tüm verileriniz kalıcı olarak silinecektir.</p>
+                  <button id="deleteAccountBtn" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium" data-i18n="settingsDeleteBtn">Hesabımı Sil</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Help Page -->
+        <div id="helpPage" class="page-content hidden">
+          <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="text-center mb-12">
+              <h1 class="text-3xl font-bold text-secondary-900 mb-4" data-i18n="helpTitle">Yardım Merkezi</h1>
+              <p class="text-lg text-secondary-600" data-i18n="helpSubtitle">Size nasıl yardımcı olabiliriz?</p>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="mb-16">
+              <h2 class="text-2xl font-bold text-secondary-900 mb-6" data-i18n="helpFAQ">Sıkça Sorulan Sorular</h2>
+              <div class="space-y-4">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item card overflow-hidden">
+                  <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none">
+                    <span class="font-medium text-secondary-900" data-i18n="faqQ1">Nasıl iş başvurusu yapabilirim?</span>
+                    <svg class="w-5 h-5 text-secondary-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </button>
+                  <div class="hidden px-6 pb-4 text-secondary-600 bg-secondary-50">
+                    <p data-i18n="faqA1">İş ilanları sayfasından ilgilendiğiniz ilana tıklayın ve "Başvuru Yap" butonunu kullanın. Profilinizin ve CV'nizin güncel olduğundan emin olun.</p>
+                  </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item card overflow-hidden">
+                  <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none">
+                    <span class="font-medium text-secondary-900" data-i18n="faqQ2">CV'mi nasıl güncellerim?</span>
+                    <svg class="w-5 h-5 text-secondary-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </button>
+                  <div class="hidden px-6 pb-4 text-secondary-600 bg-secondary-50">
+                    <p data-i18n="faqA2">Profil sayfanıza gidin ve "CV Yükle" alanını kullanarak yeni CV'nizi (PDF formatında) yükleyebilirsiniz.</p>
+                  </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item card overflow-hidden">
+                  <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none">
+                    <span class="font-medium text-secondary-900" data-i18n="faqQ3">Başvuru durumumu nasıl takip ederim?</span>
+                    <svg class="w-5 h-5 text-secondary-500 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </button>
+                  <div class="hidden px-6 pb-4 text-secondary-600 bg-secondary-50">
+                    <p data-i18n="faqA3">Profil sayfanızdaki "Başvurularım" sekmesinden tüm başvurularınızın güncel durumunu görebilirsiniz.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="card p-8">
+              <h2 class="text-2xl font-bold text-secondary-900 mb-6" data-i18n="helpContact">Bize Ulaşın</h2>
+              <form id="contactForm" class="space-y-6">
+                <div>
+                  <label class="block text-sm font-semibold text-secondary-700 mb-2" data-i18n="helpSubject">Konu</label>
+                  <select id="contactSubject" class="w-full">
+                    <option value="general" data-i18n="subjectGeneral">Genel Sorular</option>
+                    <option value="technical" data-i18n="subjectTechnical">Teknik Sorun</option>
+                    <option value="account" data-i18n="subjectAccount">Hesap İşlemleri</option>
+                    <option value="other" data-i18n="subjectOther">Diğer</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-semibold text-secondary-700 mb-2" data-i18n="helpMessage">Mesajınız</label>
+                  <textarea id="contactMessage" rows="5" required class="w-full" data-i18n-placeholder="helpMessagePlaceholder"></textarea>
+                </div>
+                
+                <button type="submit" class="btn-primary w-full md:w-auto" data-i18n="helpSend">Gönder</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin Page -->
+        <div id="adminPage" class="page-content hidden">
+          <!-- Admin dashboard content will be loaded dynamically by JavaScript -->
+        </div>
+
+      </main>
+
+      <!-- Footer -->
+      <footer class="bg-secondary-900 text-secondary-300 py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <div class="flex items-center space-x-2 mb-4">
+                <div class="bg-primary-600 text-white w-10 h-10 rounded-lg flex items-center justify-center font-bold text-xl">
+                  İB
+                </div>
+                <span class="font-bold text-xl text-white" data-i18n="appName">İşBUL.online</span>
+              </div>
+              <p class="text-sm" data-i18n="footerDescription">
+                Kariyerinizi ilerletmenin en kolay yolu
+              </p>
+            </div>
+            
+            <div>
+              <h4 class="font-semibold text-white mb-4" data-i18n="footerQuickLinks">Hızlı Bağlantılar</h4>
+              <ul class="space-y-2 text-sm">
+                <li><a href="#" class="hover:text-white" data-i18n="navHome">Ana Sayfa</a></li>
+                <li><a href="#" class="hover:text-white" data-i18n="navJobs">İş İlanları</a></li>
+                <li><a href="#" class="hover:text-white" data-i18n="navAbout">Hakkımızda</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 class="font-semibold text-white mb-4" data-i18n="footerSupport">Destek</h4>
+              <ul class="space-y-2 text-sm">
+                <li><a href="#" class="hover:text-white" data-i18n="footerHelp">Yardım Merkezi</a></li>
+                <li><a href="#" class="hover:text-white" data-i18n="footerContact">İletişim</a></li>
+                <li><a href="#" class="hover:text-white" data-i18n="footerPrivacy">Gizlilik Politikası</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 class="font-semibold text-white mb-4" data-i18n="footerSocial">Sosyal Medya</h4>
+              <div class="flex space-x-4">
+                <a href="#" class="w-10 h-10 bg-secondary-800 rounded-lg flex items-center justify-center hover:bg-primary-600 transition-colors">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </a>
+                <a href="#" class="w-10 h-10 bg-secondary-800 rounded-lg flex items-center justify-center hover:bg-primary-600 transition-colors">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                  </svg>
+                </a>
+                <a href="#" class="w-10 h-10 bg-secondary-800 rounded-lg flex items-center justify-center hover:bg-primary-600 transition-colors">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="border-t border-secondary-800 pt-8 text-center text-sm">
+            <p>&copy; 2025 <span data-i18n="appName">İşBUL.online</span>. <span data-i18n="footerRights">Tüm hakları saklıdır.</span></p>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal-overlay hidden">
+      <div class="modal-content">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-bold text-secondary-900" data-i18n="loginTitle">Giriş Yap</h2>
+          <button class="modal-close p-2 hover:bg-secondary-100 rounded-lg transition-colors">
+            <svg class="w-5 h-5 text-secondary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        
+        <form id="loginForm" class="space-y-4">
+          <div>
+            <label class="block text-sm font-semibold text-secondary-700 mb-2" data-i18n="labelEmail">E-posta</label>
+            <input type="email" id="loginEmail" required class="w-full" data-i18n-placeholder="placeholderEmail">
+          </div>
+          
+          <div>
+            <label class="block text-sm font-semibold text-secondary-700 mb-2" data-i18n="labelPassword">Şifre</label>
+            <input type="password" id="loginPassword" required class="w-full" data-i18n-placeholder="placeholderPassword">
+          </div>
+          
+          <div class="flex items-center justify-between">
+            <label class="flex items-center">
+              <input type="checkbox" class="rounded border-secondary-300 text-primary-600 focus:ring-primary-500">
+              <span class="ml-2 text-sm text-secondary-700" data-i18n="rememberMe">Beni Hatırla</span>
+            </label>
+            <a href="#" class="text-sm text-primary-600 hover:text-primary-700 font-medium" data-i18n="forgotPassword">Şifremi Unuttum</a>
+          </div>
+          
+          <button type="submit" class="btn-primary w-full py-3" data-i18n="btnLogin">Giriş Yap</button>
+        </form>
+
+        <div class="relative my-4">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-secondary-300"></div>
+          </div>
+          <div class="relative flex justify-center text-sm">
+            <span class="px-2 bg-white text-secondary-500" data-i18n="or">VEYA</span>
+          </div>
+        </div>
+
+        <button type="button" id="googleLoginBtn" class="btn-google">
+          <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          <span data-i18n="btnGoogle">Google ile Giriş Yap</span>
+        </button>
+        
+        <p class="text-center text-sm text-secondary-600 mt-6">
+          <span data-i18n="noAccount">Hesabınız yok mu?</span>
+          <button id="switchToRegister" class="text-primary-600 hover:text-primary-700 font-medium ml-1" data-i18n="btnRegister">Kayıt Ol</button>
+        </p>
+      </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal-overlay hidden">
+      <div class="modal-content">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-2xl font-bold text-secondary-900" data-i18n="registerTitle">Kayıt Ol</h2>
+          <button class="modal-close p-2 hover:bg-secondary-100 rounded-lg transition-colors">
+            <svg class="w-5 h-5 text-secondary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        
+        <form id="registerForm" class="space-y-4">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-semibold text-secondary-700 mb-2" data-i18n="labelFirstName">Ad</label>
+              <input type="text" id="registerFirstName" required class="w-full" data-i18n-placeholder="placeholderFirstName">
+            </div>
+            <div>
+              <label class="block text-sm font-semibold text-secondary-700 mb-2" data-i18n="labelLastName">Soyad</label>
+              <input type="text" id="registerLastName" required class="w-full" data-i18n-placeholder="placeholderLastName">
+            </div>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-semibold text-secondary-700 mb-2" data-i18n="labelEmail">E-posta</label>
+            <input type="email" id="registerEmail" required class="w-full" data-i18n-placeholder="placeholderEmail">
+          </div>
+          
+          <div>
+            <label class="block text-sm font-semibold text-secondary-700 mb-2" data-i18n="labelPassword">Şifre</label>
+            <input type="password" id="registerPassword" required class="w-full" data-i18n-placeholder="placeholderPassword">
+          </div>
+          
+          <div>
+            <label class="block text-sm font-semibold text-secondary-700 mb-2" data-i18n="labelConfirmPassword">Şifre Tekrar</label>
+            <input type="password" id="registerConfirmPassword" required class="w-full" data-i18n-placeholder="placeholderConfirmPassword">
+          </div>
+          
+          <label class="flex items-start">
+            <input type="checkbox" required class="mt-1 rounded border-secondary-300 text-primary-600 focus:ring-primary-500">
+            <span class="ml-2 text-sm text-secondary-700" data-i18n="acceptTerms">Kullanım koşullarını ve gizlilik politikasını kabul ediyorum</span>
+          </label>
+          
+          <button type="submit" class="btn-primary w-full py-3" data-i18n="btnRegister">Kayıt Ol</button>
+        </form>
+
+        <div class="relative my-4">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-secondary-300"></div>
+          </div>
+          <div class="relative flex justify-center text-sm">
+            <span class="px-2 bg-white text-secondary-500" data-i18n="or">VEYA</span>
+          </div>
+        </div>
+
+        <button type="button" id="googleRegisterBtn" class="btn-google">
+          <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          <span data-i18n="btnGoogle">Google ile Giriş Yap</span>
+        </button>
+        
+        <p class="text-center text-sm text-secondary-600 mt-6">
+          <span data-i18n="haveAccount">Zaten hesabınız var mı?</span>
+          <button id="switchToLogin" class="text-primary-600 hover:text-primary-700 font-medium ml-1" data-i18n="btnLogin">Giriş Yap</button>
+        </p>
+      </div>
+    </div>
+
+    <!-- Job Details Modal -->
+    <div id="jobModal" class="modal-overlay hidden">
+      <div class="modal-content max-w-2xl">
+        <div class="flex justify-between items-start mb-6">
+          <div class="flex-1">
+            <h2 id="modalJobTitle" class="text-2xl font-bold text-secondary-900 mb-2">Job Title</h2>
+            <div class="flex flex-wrap items-center gap-3 text-sm text-secondary-600">
+              <span id="modalCompanyName" class="font-medium">Company</span>
+              <span class="w-1 h-1 bg-secondary-400 rounded-full"></span>
+              <span id="modalJobCity">City</span>
+              <span class="w-1 h-1 bg-secondary-400 rounded-full"></span>
+              <span id="modalJobDate">Date</span>
+            </div>
+          </div>
+          <button class="modal-close p-2 hover:bg-secondary-100 rounded-lg transition-colors ml-4">
+            <svg class="w-5 h-5 text-secondary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        
+        <div class="mb-6">
+          <span id="modalJobSector" class="inline-block px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">Sector</span>
+        </div>
+        
+        <div class="prose max-w-none mb-6">
+          <h3 class="text-lg font-bold text-secondary-900 mb-3" data-i18n="jobDescription">İş Açıklaması</h3>
+          <p id="modalJobDescription" class="text-secondary-700">Description will appear here</p>
+        </div>
+        
+        <div class="mb-6">
+          <h3 class="text-lg font-bold text-secondary-900 mb-3" data-i18n="jobRequirements">Aranan Nitelikler</h3>
+          <ul id="modalJobRequirements" class="list-disc list-inside space-y-2 text-secondary-700">
+            <!-- Requirements will be loaded here -->
+          </ul>
+        </div>
+        
+        <button id="applyJobBtn" class="btn-primary w-full py-3" data-i18n="btnApply">Başvuru Yap</button>
+      </div>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
